@@ -1,5 +1,17 @@
 var string = "moser.wtf";
 
+var colorPalettes = [
+	["fff275","ff8c42","ff3c38","a23e48","6c8ead"],
+	["e3e4db","cdcdcd","aea4bf","8f6593","3b252c"],
+	["ff9fb2","fbdce2","0acdff","60ab9a","dedee0"],
+	["5dd9c1","acfcd9","b084cc","665687","190933"],
+	["3c1642","086375","1dd3b0","affc41","b2ff9e"],
+	["c9f0ff","eafffd","efeff0","d5cad6","6b5e62"]
+];
+
+var colorPalette = colorPalettes[Math.floor(Math.random() * colorPalettes.length)];
+document.body.style.backgroundColor = '#' + colorPalette[0];
+
 var charPaths = {
 	'm': [[0, 10], [0, 0], [5, 10], [10, 0], [10, 10]],
 	'o': [[0, 0], [0, 10], [10, 10], [10, 0], [0, 0]],
@@ -16,7 +28,7 @@ var charCnf = {
 	offset: [0, 0],
 	scale: 6,
 	runs: 5,
-	randomness: 1.5,
+	randomness: 2,
 	charWidth: 10,
 	charHeight: 10,
 	charSpace: 5
@@ -40,7 +52,7 @@ for(var run = 0; run < charCnf.runs; run++) {
 					) * charCnf.scale
 				));
 			}
-			char.strokeColor = new Color(Math.random(), Math.random(), Math.random(), Math.random());
+			char.strokeColor = new Color('#' + colorPalette[run % colorPalette.length]);
 			char.strokeWidth = 2;
 			char.smooth({ type: 'catmull-rom', factor: 1 });
 			charGroup.addChild(char);
