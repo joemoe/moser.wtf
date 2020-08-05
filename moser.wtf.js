@@ -10,7 +10,7 @@ var colorPalettes = [
 ];
 
 var colorPalette = colorPalettes[Math.floor(Math.random() * colorPalettes.length)];
-document.body.style.backgroundColor = '#' + colorPalette[0];
+document.body.style.backgroundColor = '#' + colorPalette[Math.floor(Math.random() * colorPalette.length)];
 
 var charPaths = {
 	'm': [[0, 10], [0, 0], [5, 10], [10, 0], [10, 10]],
@@ -28,6 +28,7 @@ var charCnf = {
 	offset: [0, 0],
 	scale: 6,
 	runs: 5,
+	repaintChar: 4,
 	randomness: 2,
 	charWidth: 10,
 	charHeight: 10,
@@ -39,7 +40,7 @@ var wordGroup = new Group();
 for(var run = 0; run < charCnf.runs; run++) {
 	var charGroup = new Group();
 	for(var i = 0; i < string.length; i++) {
-		for(var j = 0; j < charPaths[string[i]].length; j++) {
+		for(var j = 0; j < charCnf.repaintChar; j++) {
 			var char = new Path();
 			for(var k = 0; k < charPaths[string[i]].length; k++) {
 				char.add(new Point(
